@@ -1,0 +1,39 @@
+def calculate_errors(measured_values, true_value):
+    """
+    Calculates the absolute and relative errors between measured values from simulations
+    and a theoretical true value.
+
+    Parameters:
+    - measured_values: List of floats, representing the measured values from simulations.
+    - true_value: Float, representing the theoretical true value.
+
+    Returns:
+    - A tuple of two lists: (absolute_errors, relative_errors).
+      - absolute_errors: List of absolute errors for each measured value.
+      - relative_errors: List of relative errors (in percentage) for each measured value.
+    """
+    absolute_errors = []
+    relative_errors = []
+
+    for measured in measured_values:
+        # Calculate absolute error
+        absolute_error = abs(measured - true_value)
+        absolute_errors.append(absolute_error)
+
+        # Calculate relative error
+        relative_error = (absolute_error / true_value) * 100
+        relative_errors.append(relative_error)
+
+    return absolute_errors, relative_errors
+
+
+# Example usage
+measured_values = [0.71, 0.68, 0.65]  # Example measured values from different simulations
+true_value = 0.66  # Theoretical true value
+
+absolute_errors, relative_errors = calculate_errors(measured_values, true_value)
+
+# Printing results
+for i, measured in enumerate(measured_values):
+    print(
+        f"Measured Value: {measured}, Absolute Error: {absolute_errors[i]}, Relative Error: {relative_errors[i]:.2f}%")
